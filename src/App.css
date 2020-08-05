@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
+.row-header {
+  margin: 0px auto;
+  padding: 0px 0px; }
+
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px;
+  border-bottom: 1px ridge;
+  /* min-height: 400px;  */
+}
+.footer {
+  background-color: #6F6F6F;
+  margin: 0px auto;
+  padding: 20px 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.jumbotron {
+  margin: 0px;
+  border-radius: 0px;
+  padding: 70px 30px;
+  background-color: #494949;
+  color: #FFFFFF; }
+.containerChange{
+  margin-left: 10px;
+}
+.carousel-item > img {
+  width: 100%;
+}
+address {
+  font-size: 80%;
+  margin: 0px;
+  color: #0f0f0f; }
+
+body {
+  padding: 0px 0px 0px 0px;
+  z-index: 0;
+  background-color: #FFF;
+}
+li{
+  color: black;
+  list-style: none;
+}
+img {
+  width: 50%;
+}
+.navbar-dark {
+  background-color: #292929; }
+.btn{
+  color: #212529;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+.page-enter {
+  opacity: 0.01;
+  transform: translateX(-100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 300ms ease-in;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.page-exit-active {
+  opacity: 0.01;
+  transform: translateX(100%);
+  transition: all 300ms ease-out;
+}
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+      font-size: 3.5rem;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.fonts{
+  font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.signin{
+  width: 35%;
+  max-height: 150;
+  margin: auto;
+  margin-top: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buttonmr{
+  padding-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.cardborder{
+  border-radius: 0.9;
+  border: 0.2;
+  padding-left: 0;
+  padding-right: 0;
 }
