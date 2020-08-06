@@ -18,6 +18,10 @@ class SignIn extends Component {
   handleLogin(event) {
     this.props.loginUser({username: this.username.value, password: this.password.value});
     event.preventDefault();
+    if(this.auth.isAuthenticated)
+    {
+        return <Redirect to="/admin/dashboard" />
+    }
   }
   handleLogout() {
     this.props.logoutUser();

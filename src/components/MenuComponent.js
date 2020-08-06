@@ -3,8 +3,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem, Label,
     Modal, ModalHeader, ModalBody, Button, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm } from 'react-redux-form';
-import { Loading } from './LoadingComponent';
+import Loading from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
@@ -16,7 +15,7 @@ function RenderAppartments({appartment}) {
                             exitTransform: 'scale(0.5) translateY(-50%)'
                         }}>
                         <Card>
-                            <Link to={`/menu/${appartment._id}`} >
+                            <Link to={`/menu/${appartment._id}`}></Link>
                             <CardImg top src={baseUrl + appartment.image} alt={appartment.name} />
                             <CardImgOverlay>
                               <CardTitle>{appartment.shortDescription}</CardTitle>
@@ -26,11 +25,11 @@ function RenderAppartments({appartment}) {
                 </div>
             );
     }
-const Menu (props) => {
+const Menu = (props) => {
   const menu = props.appartments.appartments.map((appartment) => {
     return (
       <div key={appartment._id} className="col-12 col-md-5 m-1">
-        <RenderMenuItem dish={appartment} />
+        <RenderAppartments appartment={appartment} />
       </div>
     );
   });
@@ -72,3 +71,4 @@ const Menu (props) => {
     );
   }
 }
+export default Menu

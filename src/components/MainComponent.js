@@ -10,6 +10,7 @@ import AboutUs from './AboutUsComponent';
 import Menu from './MenuComponent';
 import Card from './CardComponent';
 import SignIn from './SignInComponent';
+import Dashboard from './AdmingDashboard';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -46,7 +47,10 @@ class Main extends Component {
             <Route path='/Menu/:appartmentId' component={() => <Menu appartments={this.props.appartments}/> } />
             <Route path='/signin'component={() => <SignIn auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} /> } />
             <Route path='/admin' />
-            <PrivateRoute exact path="/admin/dashboard" />
+            <Route path='/admin/addAppart' />
+            <Route path='/admin/editAppart' />
+            <Route path='/admin/delAppart' />
+            <PrivateRoute exact path="/admin/dashboard" component={Dashboard}/>
            <Redirect to="/home" />
           </Switch>
         </CSSTransition>
