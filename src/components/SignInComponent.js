@@ -13,12 +13,14 @@ class SignIn extends Component {
   constructor(props){
     super(props)
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
   handleLogin(event) {
-    this.toggleModal();
-    alert("Username: " + this.username.value + " Password: " + this.password.value
-        + " Remember: " + this.remember.checked);
+    this.props.loginUser({username: this.username.value, password: this.password.value});
     event.preventDefault();
+  }
+  handleLogout() {
+    this.props.logoutUser();
   }
   render(){
     return(
