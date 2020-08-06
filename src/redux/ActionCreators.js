@@ -52,9 +52,32 @@ export const postAppartment = (appartment,methodType) => (dispatch) => {
 }
 export const putAppartment = (appartmentId, appartment) => (dispatch) => {
   const bearer = 'Bearer ' + localStorage.getItem('token');
-  return fetch(baseUrl + 'appartments/' + appartmentId {
+  return fetch(baseUrl + 'appartments/' + appartmentId ,{
     method: "PUT",
     body: JSON.stringify({appartment}),
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': bearer
+    },
+    credentials: "same-origin"
+  })
+  .then(response => {
+    if(response.ok){
+      return response;
+    }else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  },error => {
+    throw error;
+  })
+}
+export const delAppartment = (appartmentId) => (dispatch) => {
+  const bearer = 'Bearer' + localStorage.getItem('token');
+  return fetch(baseUrl + 'appartments/' + appartmentId ,{
+    method: "DELETE",
+    body: JSON.stringify({ "_id": appartmentId }),
     headers: {
       "Content-Type": "application/json",
       'Authorization': bearer
