@@ -7,23 +7,20 @@ import {
   CarouselIndicators,
  } from 'reactstrap';
  import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-     CardTitle, Breadcrumb, BreadcrumbItem, Label,
-     Modal, ModalHeader, ModalBody, Button, Row, Col } from 'reactstrap';
- import { Link } from 'react-router-dom';
- import { Loading } from './LoadingComponent';
+     CardTitle } from 'reactstrap';
  import { baseUrl } from '../shared/baseUrl';
- import { FadeTransform, Fade, Stagger } from 'react-animation-components';
  
-function RenderAppartment({appartment}) {
+function RenderAppartment({image}) {
   return(
     <>
       <CarouselItem
       className="carouselImg col-12"
       onExiting={this.onExiting}
       onExited={this.onExited}
-      key={appartment.src}>
-        <img height="500" src={appartment.src} alt={appartment.altText} />
-        <CarouselCaption captionText={appartment.caption} captionHeader={appartment.caption} />
+      key={image.src}>
+        <img height="500" src={image.src} alt={image.altText} />
+        <CarouselCaption captionText={image.caption} captionHeader={image.caption} />
+        
       </CarouselItem>
     </>
   );
@@ -61,15 +58,17 @@ class CardComp extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = this.props.appartments.appartments.map((item) => {
-      return (
-        <RenderAppartment />
-      );
+    const slides = this.props.appartments.appartments.map((appartment) => {
+      appartment.image.map((image) => {
+        return (
+          <RenderAppartment image={image}/>
+        );
+      });
     });
     const cardslide = this.props.appartments.appartments.map((appartment) => {
       return(
         <Card>
-          <CardImg top src={baseUrl + appartment.image} alt={appartment.name} />
+          <CardImg top src={baseUrl + appartment.image[0]} alt={appartment.name} />
           <CardImgOverlay>
             <CardTitle>{appartment.shortDescription}</CardTitle>
           </CardImgOverlay>
@@ -81,27 +80,12 @@ class CardComp extends Component {
         </Card>
       );
     });
-    const carousel = () => 
-      <Carousel
-        activeIndex={activeIndex}
-        next={this.next}
-        previous={this.previous}
-      >
-        <CarouselIndicators items={this.props.appartments.appartments} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
-        {slides}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-      </Carousel>
     return (
       <div className="container col-12">
         <div className="row-content">
           {slides}
           <div className="col-12 col-md-5 m-1">
-            <FadeTransform in
-              transformProps={{
-                exitTransform: 'scale(0.5) translateY(-50%)'}}>
-              {cardslide}
-            </FadeTransform>
+            {cardslide}
           </div>
         </div>
       </div>

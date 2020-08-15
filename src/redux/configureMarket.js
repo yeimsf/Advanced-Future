@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-
 import { Appartments } from './appartments';
 import { Auth } from './auth';
 import thunk from 'redux-thunk';

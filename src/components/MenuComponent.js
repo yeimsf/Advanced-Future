@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem, Label,
     Modal, ModalHeader, ModalBody, Button, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Loading from './LoadingComponent';
@@ -17,11 +17,14 @@ function RenderAppartments({appartment}) {
                             exitTransform: 'scale(0.5) translateY(-50%)'
                         }}>
                         <Card>
-                            <Link to={`/menu/${appartment._id}`}></Link>
-                            <CardImg top src={baseUrl + appartment.image[0].image} alt={appartment.areaName} />
-                            <CardImgOverlay>
-                              <CardTitle className="customText">{appartment.areaName}</CardTitle>
-                            </CardImgOverlay>
+                            <Link to={`/menu/${appartment._id}`}>
+                              <NavLink to={`/menu/${appartment._id}`}>
+                                <CardImg top src={baseUrl + appartment.image[0].image} alt={appartment.areaName} />
+                                <CardImgOverlay>
+                                  <CardTitle className="customText">{appartment.areaName}</CardTitle>
+                                </CardImgOverlay>
+                              </NavLink>
+                            </Link>
                         </Card>
                     </FadeTransform>
                 </div>

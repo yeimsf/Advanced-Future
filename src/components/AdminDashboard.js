@@ -1,9 +1,5 @@
 import React , { Component } from 'react';
 import AdminHeader from './AdminHeader';
-import AdminFooter from './AdminFooter';
-import Footer from './FooterComponent';
-import CarouselComp from './CarouselComponent';
-import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class AdminDashboard extends Component {

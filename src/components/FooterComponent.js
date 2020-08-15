@@ -16,9 +16,8 @@ class Footer extends Component{
                     <h5>Links</h5>
                     <ul className="list-unstyled">
                         <li><Link to='/home'>Home</Link></li>
-                        <li><Link to='/aboutus'>Buy</Link></li>
-                        <li><Link to='/menu'>Sell</Link></li>
-                        <li><Link to='/contactus'>About Us</Link></li>
+                        <li><Link to='/menu'>Menu</Link></li>
+                        <li><Link to='/aboutus'>About Us</Link></li>
                     </ul>
                 </div>
                 <div className="col-7 col-sm-3">

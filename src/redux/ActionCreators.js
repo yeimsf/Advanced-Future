@@ -1,7 +1,5 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
-import FormData from 'form-data';
-import axios from 'axios';
 
 
 export const fetchAppartments = () => (dispatch) => {

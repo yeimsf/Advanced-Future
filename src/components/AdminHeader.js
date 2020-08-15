@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Button ,Input, Label} from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Button } from 'reactstrap';
 import { NavLink, Redirect } from 'react-router-dom';
 
 class AdminHeader extends Component{

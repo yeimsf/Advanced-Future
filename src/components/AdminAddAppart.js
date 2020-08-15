@@ -1,15 +1,7 @@
   import React , {Component} from 'react';
 import AdminHeader from './AdminHeader';
-import * as ActionCreators from '../redux/ActionCreators';
-import Footer from './FooterComponent';
 import AdminFooter from './AdminFooter';
-import CarouselComp from './CarouselComponent';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-    CardTitle, Breadcrumb, BreadcrumbItem, Label,
-    Modal, ModalHeader, ModalBody, Button, Row, Col, Form } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import FormData from 'form-data';
+import { Label, Button, Row, Col, Form } from 'reactstrap';
 import { baseUrl } from '../shared/baseUrl';
 
 class AddAppart extends Component {

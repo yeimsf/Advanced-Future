@@ -5,9 +5,7 @@ import AdminMain from './AdminMain';
 import Dashboard from './AdminDashboard';
 import Main from './MainComponent';
 import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
-import {  Card, CardImg, CardImgOverlay, CardTitle, Button, Form, FormGroup, Label,
-  Input,
-} from 'reactstrap';
+import {  Card, CardImg, Button, Form, Input } from 'reactstrap';
 import { Link , Redirect , useHistory , withRouter } from 'react-router-dom';
 import logo from '../assets/Images/LOGO.jpeg';
 import '../App.css';

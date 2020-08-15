@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import { Media } from 'reactstrap';
-import { Navbar , NavbarBrand } from 'reactstrap';
-import { CardImg, CardImgOverlay, CardText, CardBody,
-    CardTitle } from 'reactstrap';
-import Header from './HeaderComponent';
-import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import AboutUs from './AboutUsComponent';
 import Menu from './MenuComponent';
@@ -45,18 +39,19 @@ class Main extends Component {
   }
   render(){
     
-    // const AppartWithId = ({match}) => {
-    //   <Card dish={this.props.appartments.appartments.filter((appartment) => appartment._id === match.params.appartmentId)[0]}
-    //     isLoading={this.props.appartments.isLoading}
-    //     errMess={this.props.appartments.errMess}/>
-    // }
+    const AppartWithId = ({match}) => {
+      return(
+        <CardComp appartment={this.props.appartments.appartments.filter((appartment) => appartment._id === match.params.appartmentId)[0]}
+          isLoading={this.props.appartments.isLoading}
+          errMess={this.props.appartments.errMess}
+          appartments={this.props.appartments}
+          /> 
+      );
+    }
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
         this.props.auth.isAuthenticated
-          ? 
-          (
-            <Component {...props} />
-          )
+          ?<Component {...props} />
           : 
           (
             alert("You Are Not Authorized"),
@@ -90,9 +85,9 @@ class Main extends Component {
           <Switch location={this.props.location}>
             <Route path='/home' component={Home} />
             <Route exact path='/aboutus' component={AboutUs} />
-            <Route path='/menu' component={() => <Menu appartments={this.props.appartments}/> } />
-            {/* <Route path='/Menu/:appartmentId' component={() => <Menu appartments={this.props.appartments}/> } /> */}
+            <Route exact path='/menu' component={() => <Menu appartments={this.props.appartments}/> } />
             <Route path='/signin' component={() => <SignIn auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} /> } />
+            <Route path='/menu/:appartmentId' component={AppartWithId} />
             <PrivateRoute path='/dashboard' component={() => < AdminDashboard auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser}
           />} />
             <PrivateRoute path='/addAppart' component={() => 
