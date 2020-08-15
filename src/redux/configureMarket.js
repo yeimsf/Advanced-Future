@@ -9,7 +9,7 @@ export const ConfigureMarket = () => {
     const market = createStore(
         combineReducers({
             appartments: Appartments,
-            auth: Auth,
+            auth: Auth
         }),
         applyMiddleware(thunk, logger)
     );

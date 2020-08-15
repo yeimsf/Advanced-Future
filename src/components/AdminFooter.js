@@ -1,27 +1,15 @@
-import React , { Component } from 'react';
-import AdminHeader from './AdminHeader';
-import AdminFooter from './AdminFooter';
-import Footer from './FooterComponent';
-import CarouselComp from './CarouselComponent';
-import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../App.css';
 
-class AdminDashboard extends Component {
+class Footer extends Component{
   constructor(props){
     super(props);
   }
-  render(){
+  render()
+  {
     return(
-      <>
-        <AdminHeader auth={this.props.auth}
-          loginUser={this.props.loginUser}
-          logoutUser={this.props.logoutUser}
-          />
-        <div className="container">
-          <h3>Dashboard</h3>
-          <hr />
-        </div>
-        <div className="footer CustomMadeFooter" id="footer">
+      <div className="footer" id="footer">
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-12">
@@ -41,9 +29,7 @@ class AdminDashboard extends Component {
             </div>
         </div>
     </div>
-      </>
     );
   }
 }
-
-export default AdminDashboard;
+export default Footer;

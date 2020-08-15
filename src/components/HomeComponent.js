@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 function Home(props) {
     return(
       <>
-        <Header />
+        <Header auth={props.auth}
+          loginUser={props.loginUser}
+          logoutUser={props.logoutUser}
+          />
         <div className="container col-12">
-          <Breadcrumb>
-            <BreadcrumbItem><Link to="/home" active>Home</Link></BreadcrumbItem>
-          </Breadcrumb>
+            <CarouselComp />
         </div>
-        <CarouselComp />
         <Footer />
       </>
     );

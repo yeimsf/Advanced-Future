@@ -9,14 +9,22 @@ import {
 import { Link } from 'react-router-dom';
 import logo from '../assets/Images/LOGO.jpeg';
 import '../App.css';
+import {Map , GoogleApiWrapper} from 'google-maps-react';
+import MapContainer from './MapContainer';
+
 export default class AboutUs extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     return(
+      <>
+      <Header 
+          auth={this.props.auth}
+          loginUser={this.props.loginUser}
+          logoutUser={this.props.logoutUser}
+          />
       <div>
-        <Header />
         <div className="col-12">
           <Breadcrumb>
             <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
@@ -29,7 +37,7 @@ export default class AboutUs extends Component {
               <hr />
           </div>
           <div className="container">
-            <Card>
+            <Card className="cardBack">
               <CardBody>
                 <div className="row ">
                   <div className="col-12 col-sm-12">
@@ -63,6 +71,7 @@ export default class AboutUs extends Component {
             </div>
             <div className="col-12 col-sm-5 offset-sm-2">
               <h5>Map of our Location</h5>
+              <MapContainer />
             </div>
             <div className="col-12 offset-sm-1">
               <div className="btn-group" role="group">
@@ -73,8 +82,9 @@ export default class AboutUs extends Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
+      </>
     );
   }
 }

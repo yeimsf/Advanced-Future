@@ -6,7 +6,9 @@ export const Appartments = (state = {
         appartments: []
     }, action) => {
     switch(action.type) {
-        case ActionTypes.ADD_APPARTMENT:
+        case ActionTypes.ADD_REQUEST:
+            return {...state , isLoading: true , isAuthenticated: true , appartments: action.payload };
+        case ActionTypes.ADD_APPARTMENTS:
             return {...state, isLoading: false, errMess: null, appartments: action.payload};
 
         case ActionTypes.APPARTMENTS_LOADING:

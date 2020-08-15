@@ -29,30 +29,31 @@ class Header extends Component {
                                 <NavLink className="nav-link"  to='/home'> Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/buy'>Buy</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link" to=''>Sell</NavLink>
+                                <NavLink className="nav-link" to='/menu'>Menu</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link"  to='/aboutus'>About Us</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to=''>العربية</NavLink>
+                                <NavLink className="nav-link" to='/dashboard'>Dashboard</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to='#'>العربية</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>
-                    </div>
-                    <Nav className="offset-sm-5" navbar>
-                            <NavItem>
-                                <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+                        <Nav className="" navbar>
+                            <Button><NavItem>
+                                <NavLink className="nav-link" to='/signin'><span className="fa fa-sign-in fa-lg"></span> Login</NavLink>
                             </NavItem>
+                            </Button>
                         </Nav>
+                    </div>
                 </Navbar>
                 <Jumbotron>
                     <div className="container">
                         <div className="row row-header">
-                            <div className="col-12 col-sm-6">
+                            <div className="col-12 col-sm-12">
                                 <h1>Advanced Future Real-Estate</h1>
                                 <h5>Everyone Has An X Factor, Ours Is Real Estate</h5>
                             </div>

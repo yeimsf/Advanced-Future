@@ -9,33 +9,37 @@ class AdminHeader extends Component{
     this.handleLogout = this.handleLogout.bind(this);
   }
   handleLogout() {
-        this.props.logoutUser();
-        return <Redirect to="/home" />
+    this.props.logoutUser();
+    return <Redirect to="/home" />
   }
   render()
   {
     return(
       <div>
         <Navbar dark stickey-top expand="md">
-          <div className="container containerChange">
+          <div className="row containerChange col-11">
             <NavbarBrand className="mr-5" href="/">Advanced Future</NavbarBrand>
-            <Button className="bg-secondary" onClick={this.handleLogout}><NavLink className="nav-link">Sign-Out</NavLink></Button>
+            <Nav navbar>
+            <NavItem>
+              <NavLink className="nav-link"  to='/dashboard'>Dashboard</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="nav-link" to='/addAppart'>Add Appartment</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="nav-link"  to='/editAppart'>Edit Appartment</NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink className="nav-link" to='/delAppart'>Delete Appartment</NavLink>
+            </NavItem>
+            </Nav>
           </div>
+          <Button onClick={this.handleLogout}>
+            <NavItem>
+              <NavLink className="nav-link" to='/home'><span className="fa fa-sign-out fa-lg"></span>Sign-Out</NavLink>
+            </NavItem>
+          </Button>
         </Navbar>
-        <Nav navbar>
-          <NavItem>
-            <NavLink className="nav-link"  to='#'>Dashboard</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink className="nav-link" to='/addAppart'>Add Appartment</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink className="nav-link"  to='/editAppart'>Edit Appartment</NavLink>
-          </NavItem>
-          <NavItem>
-              <NavLink className="nav-link" to='/delAppart'>Delete Appartment</NavLink>
-          </NavItem>
-        </Nav>
         <Jumbotron>
           <div className="container">
             <div className="row row-header">
@@ -51,4 +55,4 @@ class AdminHeader extends Component{
   }
 }
 
-export default AdmingHeader;
+export default AdminHeader;

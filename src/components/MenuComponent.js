@@ -3,22 +3,24 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem, Label,
     Modal, ModalHeader, ModalBody, Button, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import Loading from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function RenderAppartments({appartment}) {
             return(
-                <div className="col-12 col-md-5 m-1">
+                <div className="col-12">
                     <FadeTransform in
                         transformProps={{
                             exitTransform: 'scale(0.5) translateY(-50%)'
                         }}>
                         <Card>
                             <Link to={`/menu/${appartment._id}`}></Link>
-                            <CardImg top src={baseUrl + appartment.image} alt={appartment.name} />
+                            <CardImg top src={baseUrl + appartment.image[0].image} alt={appartment.areaName} />
                             <CardImgOverlay>
-                              <CardTitle>{appartment.shortDescription}</CardTitle>
+                              <CardTitle className="customText">{appartment.areaName}</CardTitle>
                             </CardImgOverlay>
                         </Card>
                     </FadeTransform>
@@ -26,13 +28,13 @@ function RenderAppartments({appartment}) {
             );
     }
 const Menu = (props) => {
-  const menu = props.appartments.appartments.map((appartment) => {
-    return (
-      <div key={appartment._id} className="col-12 col-md-5 m-1">
-        <RenderAppartments appartment={appartment} />
-      </div>
-    );
-  });
+    const menu = props.appartments.appartments.map((appartment) => {
+      return (
+        <div key={appartment._id} className="col-12 col-md-5 m-1">
+          <RenderAppartments appartment={appartment} />
+        </div>
+      );
+    });
   if (props.appartments.isLoading) {
     return(
       <div className="container">
@@ -53,6 +55,10 @@ const Menu = (props) => {
   }
   else {
     return (
+      <>
+      <Header auth={props.auth}
+          loginUser={props.loginUser}
+          logoutUser={props.logoutUser}/>
       <div className="container">
         <div className="row">
           <Breadcrumb>
@@ -68,6 +74,8 @@ const Menu = (props) => {
           {menu}
         </div>
       </div>
+      <Footer />
+      </>
     );
   }
 }

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import {Navbar , NavbarBrand } from 'reactstrap';
+import Main from './components/MainComponent';
 import Menu from './components/MenuComponent';
 import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
@@ -12,16 +13,17 @@ import { ConfigureMarket } from './redux/configureMarket';
 
 const market = ConfigureMarket();
 
-function App() {
-  return (
-    <Provider store={market}>
-      <BrowserRouter>
-        <div className="App">
-          <Menu />
-        </div>
-      </BrowserRouter>
-    </Provider>
-  );
+class App extends Component {
+  render(){
+    return (
+      <Provider store={market}>
+        <BrowserRouter>
+          <div>
+            <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>
+    );
+  }
 }
-
 export default App;
