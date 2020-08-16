@@ -10,6 +10,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser, fetchAppartments, postAppartment, delAppartment, putAppartment } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import DelAppart from './AdminDelAppart';
 
 const mapStateToProps = state => {
   return {
@@ -45,6 +46,7 @@ class Main extends Component {
           isLoading={this.props.appartments.isLoading}
           errMess={this.props.appartments.errMess}
           appartments={this.props.appartments}
+          match = {match}
           /> 
       );
     }
@@ -94,7 +96,7 @@ class Main extends Component {
               <AddAppart postAppartment={this.props.postAppartment} /> //postAppartments={this.props.postAppartments}/>
             }/>
             <PrivateRoute path='/editAppart' />
-            <PrivateRoute path='/delAppart' />
+            <PrivateRoute path='/delAppart' component={() => <DelAppart appartments={this.props.appartments} delAppartment={this.props.delAppartment}/> }/>
            <Redirect to="/home"/>
           </Switch>
         </CSSTransition>

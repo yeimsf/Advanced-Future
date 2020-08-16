@@ -5,26 +5,16 @@ import {
   CarouselCaption,
   CarouselControl,
   CarouselIndicators,
- } from 'reactstrap';
- import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-     CardTitle } from 'reactstrap';
- import { baseUrl } from '../shared/baseUrl';
- 
-function RenderAppartment({image}) {
-  return(
-    <>
-      <CarouselItem
-      className="carouselImg col-12"
-      onExiting={this.onExiting}
-      onExited={this.onExited}
-      key={image.src}>
-        <img height="500" src={image.src} alt={image.altText} />
-        <CarouselCaption captionText={image.caption} captionHeader={image.caption} />
-        
-      </CarouselItem>
-    </>
-  );
-}
+  Row , Col
+} from 'reactstrap';
+import { CardGroup , Card, CardImg, CardImgOverlay, CardText, CardBody,
+     CardTitle, CardFooter , CardDeck } from 'reactstrap';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
+import { baseUrl } from '../shared/baseUrl';
+import '../App.css';
+import { Link } from 'react-router-dom';
+
 class CardComp extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +25,7 @@ class CardComp extends Component {
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
   }
+  appartment= this.props.appartments.appartments.filter((appartment) => appartment._id === this.props.match.params.appartmentId)[0]
   onExiting() {
     this.animating = true;
   }
@@ -43,12 +34,12 @@ class CardComp extends Component {
   }
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === this.props.appartments.appartments.length - 1 ? 0 : this.state.activeIndex + 1;
+    const nextIndex = this.state.activeIndex === this.props.appartment.image.length - 1 ? 0 : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? this.props.appartments.appartments.length - 1 : this.state.activeIndex - 1;
+    const nextIndex = this.state.activeIndex === 0 ? this.props.appartment.image.length - 1 : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
   goToIndex(newIndex) {
@@ -58,37 +49,46 @@ class CardComp extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = this.props.appartments.appartments.map((appartment) => {
-      appartment.image.map((image) => {
-        return (
-          <RenderAppartment image={image}/>
-        );
-      });
-    });
-    const cardslide = this.props.appartments.appartments.map((appartment) => {
+    const cardslide = this.props.appartment.image.map((image) => {
       return(
+        <>
         <Card>
-          <CardImg top src={baseUrl + appartment.image[0]} alt={appartment.name} />
-          <CardImgOverlay>
-            <CardTitle>{appartment.shortDescription}</CardTitle>
-          </CardImgOverlay>
-          <CardBody>
-            <CardTitle>{appartment.name}</CardTitle>
-            <CardText>{appartment.description}</CardText>
-            <CardText>{appartment.price}</CardText>
-          </CardBody>
+          <Link to={`/menu/${this.props.appartment._id}/${image._id}`}>
+            <CardImg style={{height: "200px"}} width="100%" top src={baseUrl + image.image} alt={this.props.appartment.name} />
+          </Link>
+          <CardFooter>
+            <p className="text-muted">Appartment Description: {this.props.appartment.shortDescription}</p>
+          </CardFooter>    
         </Card>
+        </>
       );
     });
+    
     return (
-      <div className="container col-12">
-        <div className="row-content">
-          {slides}
-          <div className="col-12 col-md-5 m-1">
-            {cardslide}
+      <>
+        <Header />
+        <div className="container col-12">
+          <div className="row row-content col-12 col-sm-6">
+            <Card>
+              <CardImg top src={baseUrl + this.props.appartment.image[0].image} alt={this.props.appartment.name} />
+              <CardImgOverlay>
+                <CardTitle>{this.props.appartment.shortDescription}</CardTitle>
+              </CardImgOverlay>
+              <CardBody>
+                <CardTitle>Appartment Name: {this.props.appartment.name}</CardTitle>
+                <CardText>Appartment Description: {this.props.appartment.description}</CardText>
+                <CardText>Appartment Price: {this.props.appartment.price}</CardText>
+              </CardBody>
+            </Card>
+          </div>
+          <div className="container row row-content col-12">
+            <CardDeck>
+              {cardslide}
+            </CardDeck>
           </div>
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 }

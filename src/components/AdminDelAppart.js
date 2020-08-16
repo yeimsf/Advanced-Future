@@ -1,20 +1,25 @@
-import React from 'react';
+import React , { Component } from 'react';
 import AdminHeader from './AdminHeader';
 import AdminFooter from './AdminFooter';
-import CardComp from './CardComponent';
+import AdminCardComp from './AdminCard';
 
-function DelAppart (props) {
+class DelAppart extends Component {
+ constructor(props) {
+    super(props);
+  }
+  
+  render(){
     return(
       <>
         <AdminHeader />
         <div className="container">
-          <h3>Enter Appartment Info</h3>
+          <h3>Enter ID Of Appartment To Be Deleted</h3>
           <hr />
-          <CardComp appartments={this.props.appartments.appartments}/>
+          <AdminCardComp appartments={this.props.appartments} delAppartment={this.props.delAppartment}/>
         </div>
         <AdminFooter />
       </>
     );
+  }
 }
-
 export default DelAppart;
