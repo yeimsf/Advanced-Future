@@ -3,6 +3,7 @@ import AdminHeader from './AdminHeader';
 import AdminFooter from './AdminFooter';
 import { Label, Button, Row, Col, Form } from 'reactstrap';
 import { baseUrl } from '../shared/baseUrl';
+import axios from 'axios';
 
 class AddAppart extends Component {
   constructor(props){
@@ -11,10 +12,12 @@ class AddAppart extends Component {
       areaName: '' ,
       description: '',
       shortDescription: '',
-      price: ''
+      price: '',
+      image: ''
     };
     this.onChange = this.onChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitFinalIsa = this.handleSubmitFinalIsa.bind(this);
   }
   onChange(e) {
       if (e.target.id === 'areaName') {
@@ -26,46 +29,77 @@ class AddAppart extends Component {
     } else if (e.target.id === 'price') {
         this.setState({ price: e.target.value});
         console.log(e.target.value);
+    }else if (e.target.id === 'image') {
+      this.setState({ image: e.target.files});
+      console.log(e.target.value);
     }
   }
-  // handleSubmit(values) {
-  //   let formData = new FormData();
-  //   formData.append('areaName',values.areaName);
-  //   formData.append('description',values.description);
-  //   formData.append('shortDescription',values.shortDescription);
-  //   formData.append('price',values.price);
-  //   //formData.append('imageFile',values.imageFile , {uri: photo.uri, name: 'image.jpg', type: 'image/jpeg'});
-    
-  //   this.props.postAppartment({
-  //     areaName: values.areaName,
-  //     description: values.description,
-  //     shortDescription: values.shortDescription,
-  //     price: values.price
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   fetch((baseUrl+'appartments/'), {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json', 
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       areaName: this.state.areaName,
+  //       description: this.state.description,
+  //       shortDescription: this.state.shortDescription,
+  //       price: this.state.price,
+  //       image: this.state.imageFile
+  //     }),
+  //   })
+  //   this.setState({
+  //     areaName: '' ,
+  //     description: '',
+  //     shortDescription: '',
+  //     price: ''
   //   });
   // }
-  handleSubmit(e) {
-    e.preventDefault();
-    fetch((baseUrl+'appartments/'), {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        areaName: this.state.areaName,
-        description: this.state.description,
-        shortDescription: this.state.shortDescription,
-        price: this.state.price
-      })
-    })
-    this.setState({
-      areaName: '' ,
-      description: '',
-      shortDescription: '',
-      price: ''
-    });
-  }
+  // handleSubmitFile(){
+  //   fetch((baseUrl+'sendfiles'), {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       imageFile: this.state.imageFile
+  //     })
+  //   })
+  // }
+  // handleSubmitForm(){
 
+  //     let data = new FormData();
+  //     data.append("imageFile", this.state.image);
+  //     data.set("shortDescription", this.state.shortDescription);
+  //     data.set("areaName",this.state.areaName);
+  //     data.set("description",this.state.description);
+  //     data.set("price",this.state.price);
+  //     fetch((baseUrl+'appartments/'), {
+  //     method: 'POST',
+  //     body: data
+  //   })
+  //   this.setState({
+  //     areaName: '' ,
+  //     description: '',
+  //     shortDescription: '',
+  //     price: ''
+  //   });
+  // }
+  handleSubmitFinalIsa(e) {
+    e.preventDefault()
+
+    var formData = new FormData();
+    for (const key of Object.keys(this.state.image)) {
+        formData.append('image', this.state.image[key])
+    }
+    formData.set("shortDescription", this.state.shortDescription);
+    formData.set("areaName",this.state.areaName);
+    formData.set("description",this.state.description);
+    formData.set("price",this.state.price);
+    axios.post("https://localhost:3886/appartments", formData, {
+    }).then(res => {
+        console.log(res.data)
+    })
+  }
   render(){
     return(
       <>
@@ -73,7 +107,7 @@ class AddAppart extends Component {
         <div className="container">
           <h3>Enter Appartment Information</h3>
           <hr />
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmitFinalIsa} id="MyForm">
             <Row className="form-group">
               <Col>
                 <Label htmlFor="areaName">Area Name</Label>
@@ -100,8 +134,8 @@ class AddAppart extends Component {
             </Row>
             <Row className="form-group">
               <Col>
-                <Label htmlFor="imagesUpload">Images Upload</Label>
-                <input model=".imageFile" type="file" multiple id="imageFile" className="form-control" innerRef={(input) => this.imageFile = input}></input>
+                <Label htmlFor="image">Images Upload</Label>
+                <input model=".image" type="file" multiple id="image" onChange={this.onChange} className="form-control" innerRef={(input) => this.image = input}></input>
               </Col>
             </Row>
             <Button type="submit" className="bg-primary">Submit</Button>
