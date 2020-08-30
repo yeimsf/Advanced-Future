@@ -11,7 +11,10 @@ class DelAppart extends Component {
   render(){
     return(
       <>
-        <AdminHeader />
+        <AdminHeader auth={this.props.auth}
+          loginUser={this.props.loginUser}
+          logoutUser={this.props.logoutUser}
+          />
         <div className="container">
           <h3>Enter ID Of Appartment To Be Deleted</h3>
           <hr />

@@ -6,11 +6,13 @@ import CardComp from './CardComponent';
 import SignIn from './SignInComponent';
 import AddAppart from './AdminAddAppart';
 import AdminDashboard from './AdminDashboard';
+import AdminEdit from './AdminEditAppart';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser, fetchAppartments, postAppartment, delAppartment, putAppartment } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import DelAppart from './AdminDelAppart';
+import AdminCardEditComp from './AdminCardEdit';
 
 const mapStateToProps = state => {
   return {
@@ -21,8 +23,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => ({
 fetchAppartments: () => {dispatch(fetchAppartments())},
-//fetchAppartimages: () => {dispatch(fetchAppartimages())},
-//postAppartments: (appartment) => {dispatch(postAppartments(appartment))},
 postAppartment: (newAppartment) => {dispatch(postAppartment(newAppartment))},
 putAppartment: (appartmentId, appartment) => {dispatch(putAppartment(appartmentId, appartment))},
 delAppartment: (appartmentId) => {dispatch(delAppartment(appartmentId))},
@@ -41,6 +41,16 @@ class Main extends Component {
   render(){
     
     const AppartWithId = ({match}) => {
+      return(
+        <CardComp appartment={this.props.appartments.appartments.filter((appartment) => appartment._id === match.params.appartmentId)[0]}
+          isLoading={this.props.appartments.isLoading}
+          errMess={this.props.appartments.errMess}
+          appartments={this.props.appartments}
+          match = {match}
+          />
+      );
+    }
+    const AdminAppartWithId = ({match}) => {
       return(
         <CardComp appartment={this.props.appartments.appartments.filter((appartment) => appartment._id === match.params.appartmentId)[0]}
           isLoading={this.props.appartments.isLoading}
@@ -92,11 +102,12 @@ class Main extends Component {
             <Route path='/menu/:appartmentId' component={AppartWithId} />
             <PrivateRoute path='/dashboard' component={() => < AdminDashboard auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser}
           />} />
+          {/* <PrivateRoute path='editAppart/:appartmentId' component={AdminAppartWithId} /> */}
             <PrivateRoute path='/addAppart' component={() => 
-              <AddAppart postAppartment={this.props.postAppartment} /> //postAppartments={this.props.postAppartments}/>
+              <AddAppart auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} postAppartment={this.props.postAppartment} /> //postAppartments={this.props.postAppartments}/>
             }/>
-            <PrivateRoute path='/editAppart' />
-            <PrivateRoute path='/delAppart' component={() => <DelAppart appartments={this.props.appartments} delAppartment={this.props.delAppartment}/> }/>
+            <PrivateRoute exact path='/editAppart' component={() => <AdminEdit auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} appartments={this.props.appartments} putAppartment={this.props.putAppartment}/>}/>
+            <PrivateRoute path='/delAppart' component={() => <DelAppart auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} appartments={this.props.appartments} delAppartment={this.props.delAppartment}/> }/>
            <Redirect to="/home"/>
           </Switch>
         </CSSTransition>

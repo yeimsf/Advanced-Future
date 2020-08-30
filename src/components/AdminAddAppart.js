@@ -103,7 +103,10 @@ class AddAppart extends Component {
   render(){
     return(
       <>
-        <AdminHeader />
+        <AdminHeader auth={this.props.auth}
+          loginUser={this.props.loginUser}
+          logoutUser={this.props.logoutUser}
+          />
         <div className="container">
           <h3>Enter Appartment Information</h3>
           <hr />
