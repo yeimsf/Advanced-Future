@@ -7,6 +7,9 @@ import SignIn from './SignInComponent';
 import AddAppart from './AdminAddAppart';
 import AdminDashboard from './AdminDashboard';
 import AdminEdit from './AdminEditAppart';
+import ArabicHomeComp from './ArabicHomeComp';
+import ArabicMenuComp from './ArabicMenuComp';
+import ArabicAboutComp from './ArabicAboutComp';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser, fetchAppartments, postAppartment, delAppartment, putAppartment } from '../redux/ActionCreators';
@@ -96,9 +99,12 @@ class Main extends Component {
         <CSSTransition classNames="page" timeout={300}>
           <Switch location={this.props.location}>
             <Route path='/home' component={Home} />
-            <Route exact path='/aboutus' component={AboutUs} />
+            <Route path='/aboutus' component={AboutUs} />
             <Route exact path='/menu' component={() => <Menu appartments={this.props.appartments}/> } />
             <Route path='/signin' component={() => <SignIn auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser} /> } />
+            <Route exact path='/arabicHome' component={ArabicHomeComp}/>
+            <Route exact path='/arabicMenu' component={() => <ArabicMenuComp appartments={this.props.appartments}/> }/>
+            <Route exact path='/arabicAboutUs' component={ArabicAboutComp}/>
             <Route path='/menu/:appartmentId' component={AppartWithId} />
             <PrivateRoute path='/dashboard' component={() => < AdminDashboard auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser}
           />} />

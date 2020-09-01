@@ -9,8 +9,6 @@ import {
 import { Link } from 'react-router-dom';
 import logo from '../assets/Images/LOGO.jpeg';
 import '../App.css';
-import {Map , GoogleApiWrapper} from 'google-maps-react';
-import MapContainer from './MapContainer';
 
 export default class AboutUs extends Component {
   constructor(props) {
@@ -61,17 +59,10 @@ export default class AboutUs extends Component {
             <div className="col-12">
               <h3>Location Information</h3>
             </div>
-            <div className="col-12 col-sm-4 offset-sm-1">
+            <div className="col-12 col-sm-12 offset-sm-1">
               <h5>Our Address</h5>
-              <address>Address Goes Here<br/  >
-              <i className="fa fa-phone"></i>: +201121053405<br />
-              <i className="fa fa-fax"></i>: +201092646968<br />
-              <i className="fa fa-envelope"></i>: <a href="mailto:Future@gmail.com">Future@gmail.com</a>
-              </address>
-            </div>
-            <div className="col-12 col-sm-5 offset-sm-2">
-              <h5>Map of our Location</h5>
-              <MapContainer />
+              <p>Address Goes Here</p>
+              <p><i className="fa fa-phone"></i> +201121053405  <i className="fa fa-fax"></i> +201092646968  <i className="fa fa-envelope"></i> <a href="mailto:Future@gmail.com">Future@gmail.com</a></p>
             </div>
             <div className="col-12 offset-sm-1">
               <div className="btn-group" role="group">

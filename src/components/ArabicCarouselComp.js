@@ -11,30 +11,31 @@ const items = [
   {
     src: require('../assets/Images/architecture-beautiful-exterior-family-house.jpg'),
     altText: "Slide 1",
-    caption: "Functionality & Simplicity",
-    text: "Archeticture That Reflects Practical Style Of Life",
+    caption: "العملية والبساطة",
+    text: "فن العمارة الذي يعكس أسلوب الحياة العملي",
     header: "Slide 1 Header",
     key: "1"
   },
   {
     src: require('../assets/Images/house_autumn_river_127447_1366x768.jpg'),
     altText: "Slide 2",
-    caption: "Beauty And Peace",
-    text: "Autumn Looks That Takes Your Troubles Away",
+    caption: "الجمال والسلام",
+    text: "منظر الخريف الذي يريح الأنظار",
     header: "Slide 2 Header",
     key: "2"
   },
   {
     src: require('../assets/Images/photo-1576941089067-2de3c901e126.jpg'),
     altText: "Slide 3",
-    caption: "Suburban Compatibility",
-    text: "Peaceful Life Of Just Being Down To Earth And Comfortable",
+    caption: "معنى التوافق",
+    text: "حياة سالمة و مريحة لأقصى درجة",
     header: "Slide 3 Header",
     key: "3"
   }
 ];
+// 
 
-class CarouselComp extends Component {
+class ArabicCarouselComp extends Component {
   constructor(props) {
     super(props);
     this.state = { activeIndex: 0 };
@@ -107,4 +108,4 @@ class CarouselComp extends Component {
 }
 
 
-export default CarouselComp;
+export default ArabicCarouselComp;

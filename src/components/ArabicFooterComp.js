@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-class Footer extends Component{
+class ArabicFooterComp extends Component{
   constructor(props){
     super(props);
   }
@@ -41,4 +41,4 @@ class Footer extends Component{
     );
   }
 }
-export default Footer;
+export default ArabicFooterComp;
