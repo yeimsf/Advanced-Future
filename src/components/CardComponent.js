@@ -54,11 +54,8 @@ class CardComp extends Component {
         <>
         <Card>
           <Link to={`/menu/${this.props.appartment._id}/${image._id}`}>
-            <CardImg style={{height: "200px"}} width="100%" top src={baseUrl + image.image} alt={this.props.appartment.name} />
+            <CardImg style={{height: "200px"}} width="100%" top src={baseUrl + image.image} alt={this.props.appartment.areaName} />
           </Link>
-          <CardFooter>
-            <p className="text-muted">Appartment Description: {this.props.appartment.shortDescription}</p>
-          </CardFooter>    
         </Card>
         </>
       );
@@ -70,14 +67,30 @@ class CardComp extends Component {
         <div className="container col-12">
           <div className="row row-content col-12 col-sm-6">
             <Card>
-              <CardImg top src={baseUrl + this.props.appartment.image[0].image} alt={this.props.appartment.name} />
+              <CardImg top src={baseUrl + this.props.appartment.image[0].image} alt={this.props.appartment.areaName} />
               <CardImgOverlay>
-                <CardTitle>{this.props.appartment.shortDescription}</CardTitle>
+                <CardTitle>{this.props.appartment.areaName}</CardTitle>
               </CardImgOverlay>
               <CardBody>
-                <CardTitle>Appartment Name: {this.props.appartment.name}</CardTitle>
-                <CardText>Appartment Description: {this.props.appartment.description}</CardText>
-                <CardText>Appartment Price: {this.props.appartment.price}</CardText>
+                <CardTitle>Appartment Location: {this.props.appartment.areaName}</CardTitle>
+                <CardText>Description: {this.props.appartment.description}</CardText>
+                <CardText>Price: {this.props.appartment.price} EGP</CardText>
+                <Row>
+                  <Col>
+                    <CardText>Bedrooms: {this.props.appartment.bedrooms}</CardText>
+                  </Col>
+                  <Col>
+                    <CardText>Bathrooms: {this.props.appartment.bathrooms}</CardText>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <CardText>Balconys: {this.props.appartment.balconys}</CardText>
+                  </Col>
+                  <Col>
+                    <CardText>Kitchens: {this.props.appartment.kitchens}</CardText>
+                  </Col>
+                </Row>
               </CardBody>
             </Card>
           </div>

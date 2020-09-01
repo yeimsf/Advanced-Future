@@ -17,7 +17,7 @@ function RenderAppartments({appartment}) {
                             exitTransform: 'scale(0.5) translateY(-50%)'
                         }}>
                         <Card>
-                            <Link to={`/menu/${appartment._id}`}>
+                            <Link to={`/arabicMenu/${appartment._id}`}>
                                 <CardImg top src={baseUrl + appartment.image[0].image} alt={appartment.areaName} />
                                 <CardImgOverlay>
                                   <CardTitle className="customText">{appartment.areaName}</CardTitle>

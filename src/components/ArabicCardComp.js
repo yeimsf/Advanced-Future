@@ -9,13 +9,13 @@ import {
 } from 'reactstrap';
 import { CardGroup , Card, CardImg, CardImgOverlay, CardText, CardBody,
      CardTitle, CardFooter , CardDeck } from 'reactstrap';
-import Header from './HeaderComponent';
-import Footer from './FooterComponent';
+import ArabicHeaderComp from './ArabicHeaderComp';
+import ArabicFooterComp from './ArabicFooterComp';
 import { baseUrl } from '../shared/baseUrl';
 import '../App.css';
 import { Link } from 'react-router-dom';
 
-class CardComp extends Component {
+class ArabicCardComp extends Component {
   constructor(props) {
     super(props);
     this.state = { activeIndex: 0 };
@@ -54,11 +54,8 @@ class CardComp extends Component {
         <>
         <Card>
           <Link to={`/menu/${this.props.appartment._id}/${image._id}`}>
-            <CardImg style={{height: "200px"}} width="100%" top src={baseUrl + image.image} alt={this.props.appartment.name} />
+            <CardImg style={{height: "200px"}} width="100%" top src={baseUrl + image.image} alt={this.props.appartment.areaName} />
           </Link>
-          <CardFooter>
-            <p className="text-muted">Appartment Description: {this.props.appartment.shortDescription}</p>
-          </CardFooter>    
         </Card>
         </>
       );
@@ -66,18 +63,37 @@ class CardComp extends Component {
     
     return (
       <>
-        <Header />
-        <div className="container col-12">
+        <ArabicHeaderComp auth={this.props.auth}
+          loginUser={this.props.loginUser}
+          logoutUser={this.props.logoutUser}
+           />
+        <div dir="rtl" className="container col-12">
           <div className="row row-content col-12 col-sm-6">
             <Card>
-              <CardImg top src={baseUrl + this.props.appartment.image[0].image} alt={this.props.appartment.name} />
+              <CardImg top src={baseUrl + this.props.appartment.image[0].image} alt={this.props.appartment.areaName} />
               <CardImgOverlay>
-                <CardTitle>{this.props.appartment.shortDescription}</CardTitle>
+                <CardTitle>{this.props.appartment.areaName}</CardTitle>
               </CardImgOverlay>
               <CardBody>
-                <CardTitle>Appartment Name: {this.props.appartment.name}</CardTitle>
-                <CardText>Appartment Description: {this.props.appartment.description}</CardText>
-                <CardText>Appartment Price: {this.props.appartment.price}</CardText>
+                <CardTitle>موقع الشقة: {this.props.appartment.areaName}</CardTitle>
+                <CardText>التفاصيل: {this.props.appartment.description}</CardText>
+                <CardText>السعر: {this.props.appartment.price} EGP</CardText>
+                <Row>
+                  <Col>
+                    <CardText>الغرف: {this.props.appartment.bedrooms}</CardText>
+                  </Col>
+                  <Col>
+                    <CardText>الحمامات: {this.props.appartment.bathrooms}</CardText>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <CardText>البلكونات: {this.props.appartment.balconys}</CardText>
+                  </Col>
+                  <Col>
+                    <CardText>المطبخ: {this.props.appartment.kitchens}</CardText>
+                  </Col>
+                </Row>
               </CardBody>
             </Card>
           </div>
@@ -87,11 +103,11 @@ class CardComp extends Component {
             </CardDeck>
           </div>
         </div>
-        <Footer />
+        <ArabicFooterComp />
       </>
     );
   }
 }
 
 
-export default CardComp;
+export default ArabicCardComp;

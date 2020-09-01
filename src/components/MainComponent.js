@@ -9,6 +9,7 @@ import AdminDashboard from './AdminDashboard';
 import AdminEdit from './AdminEditAppart';
 import ArabicHomeComp from './ArabicHomeComp';
 import ArabicMenuComp from './ArabicMenuComp';
+import ArabicCardComp from './ArabicCardComp';
 import ArabicAboutComp from './ArabicAboutComp';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -46,6 +47,16 @@ class Main extends Component {
     const AppartWithId = ({match}) => {
       return(
         <CardComp appartment={this.props.appartments.appartments.filter((appartment) => appartment._id === match.params.appartmentId)[0]}
+          isLoading={this.props.appartments.isLoading}
+          errMess={this.props.appartments.errMess}
+          appartments={this.props.appartments}
+          match = {match}
+          />
+      );
+    }
+    const ArabicAppartWithId = ({match}) => {
+      return(
+        <ArabicCardComp appartment={this.props.appartments.appartments.filter((appartment) => appartment._id === match.params.appartmentId)[0]}
           isLoading={this.props.appartments.isLoading}
           errMess={this.props.appartments.errMess}
           appartments={this.props.appartments}
@@ -106,6 +117,7 @@ class Main extends Component {
             <Route exact path='/arabicMenu' component={() => <ArabicMenuComp appartments={this.props.appartments}/> }/>
             <Route exact path='/arabicAboutUs' component={ArabicAboutComp}/>
             <Route path='/menu/:appartmentId' component={AppartWithId} />
+            <Route path='/arabicMenu/:appartmentId' component={ArabicAppartWithId} />
             <PrivateRoute path='/dashboard' component={() => < AdminDashboard auth={this.props.auth} loginUser={this.props.loginUser} logoutUser={this.props.logoutUser}
           />} />
           {/* <PrivateRoute path='editAppart/:appartmentId' component={AdminAppartWithId} /> */}

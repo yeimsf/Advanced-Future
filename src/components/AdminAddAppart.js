@@ -13,6 +13,10 @@ class AddAppart extends Component {
       description: '',
       shortDescription: '',
       price: '',
+      bedrooms: '',
+      bathrooms: '',
+      balconys: '',
+      kitchens: '',
       image: ''
     };
     this.onChange = this.onChange.bind(this);
@@ -24,11 +28,16 @@ class AddAppart extends Component {
         this.setState({ areaName: e.target.value });
     } else if (e.target.id === 'description') {
         this.setState({ description: e.target.value });
-    } else if (e.target.id === 'shortDescription') {
-        this.setState({ shortDescription: e.target.value });
-    } else if (e.target.id === 'price') {
+    }  else if (e.target.id === 'price') {
         this.setState({ price: e.target.value});
-        console.log(e.target.value);
+    }else if (e.target.id === 'bedrooms') {
+      this.setState({ bedrooms: e.target.value});
+    }else if (e.target.id === 'bathrooms') {
+      this.setState({ bathrooms: e.target.value});
+    }else if (e.target.id === 'balconys') {
+      this.setState({ balconys: e.target.value});
+    }else if (e.target.id === 'kitchens') {
+      this.setState({ kitchens: e.target.value});
     }else if (e.target.id === 'image') {
       this.setState({ image: e.target.files});
       console.log(e.target.value);
@@ -91,10 +100,13 @@ class AddAppart extends Component {
     for (const key of Object.keys(this.state.image)) {
         formData.append('image', this.state.image[key])
     }
-    formData.set("shortDescription", this.state.shortDescription);
     formData.set("areaName",this.state.areaName);
     formData.set("description",this.state.description);
     formData.set("price",this.state.price);
+    formData.set("bedrooms",this.state.bedrooms);
+    formData.set("bathrooms",this.state.bathrooms);
+    formData.set("balconys",this.state.balconys);
+    formData.set("kitchens",this.state.kitchens);
     axios.post("https://localhost:3886/appartments", formData, {
     }).then(res => {
         console.log(res.data)
@@ -125,8 +137,26 @@ class AddAppart extends Component {
             </Row>
             <Row className="form-group">
               <Col>
-                <Label htmlFor="shortDescription">Short Description</Label>
-                <input model=".shortDescription" type="text" onChange={this.onChange} id="shortDescription" className="form-control" innerRef={(input) => this.shortDescription = input}></input>  
+                <Label htmlFor="bedrooms">Bedrooms</Label>
+                <input model=".bedrooms" type="text" onChange={this.onChange} id="bedrooms" className="form-control" innerRef={(input) => this.bedrooms = input}></input>  
+              </Col>
+            </Row>
+            <Row className="form-group">
+              <Col>
+                <Label htmlFor="bathrooms">Bathrooms</Label>
+                <input model=".bathrooms" type="text" onChange={this.onChange} id="bathrooms" className="form-control" innerRef={(input) => this.bathrooms = input}></input>  
+              </Col>
+            </Row>
+            <Row className="form-group">
+              <Col>
+                <Label htmlFor="balconys">Balconys</Label>
+                <input model=".balconys" type="text" onChange={this.onChange} id="balconys" className="form-control" innerRef={(input) => this.balconys = input}></input>  
+              </Col>
+            </Row>
+            <Row className="form-group">
+              <Col>
+                <Label htmlFor="kitchens">Kitchens</Label>
+                <input model=".kitchens" type="text" onChange={this.onChange} id="kitchens" className="form-control" innerRef={(input) => this.kitchens = input}></input>  
               </Col>
             </Row>
             <Row className="form-group">
