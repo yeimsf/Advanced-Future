@@ -34,20 +34,20 @@ class ArabicHeaderComp extends Component {
                             <NavItem>
                                 <NavLink className="nav-link"  to='arabicAboutUs'>من نحن</NavLink>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <NavLink className="nav-link" to='/dashboard'>لوحة التحكم</NavLink>
-                            </NavItem>
+                            </NavItem> */}
                             <NavItem>
                                 <NavLink className="nav-link" to='/home'>English</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>
-                        <Nav navbar>
+                        {/* <Nav navbar>
                             <Button><NavItem>
                                 <NavLink className="nav-link" to='/signin'><span className="fa fa-sign-in fa-lg"></span> تسجيل الدخول</NavLink>
                             </NavItem>
                             </Button>
-                        </Nav>
+                        </Nav> */}
                     </div>
                 </Navbar>
                 <Jumbotron>

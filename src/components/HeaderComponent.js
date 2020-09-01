@@ -34,20 +34,20 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link"  to='/aboutus'>About Us</NavLink>
                             </NavItem>
-                            <NavItem>
+                            {/* <NavItem>
                                 <NavLink className="nav-link" to='/dashboard'>Dashboard</NavLink>
-                            </NavItem>
+                            </NavItem> */}
                             <NavItem>
                                 <NavLink className="nav-link" to='/arabicHome'>العربية</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>
-                        <Nav className="" navbar>
+                        {/* <Nav className="" navbar>
                             <Button><NavItem>
                                 <NavLink className="nav-link" to='/signin'><span className="fa fa-sign-in fa-lg"></span> Login</NavLink>
                             </NavItem>
                             </Button>
-                        </Nav>
+                        </Nav> */}
                     </div>
                 </Navbar>
                 <Jumbotron>
