@@ -1,14 +1,6 @@
-import React, { useState, Component } from 'react';
-import {
-  Carousel,
-  CarouselItem,
-  CarouselCaption,
-  CarouselControl,
-  CarouselIndicators,
-  Row , Col
-} from 'reactstrap';
-import { CardGroup , Card, CardImg, CardImgOverlay, CardText, CardBody,
-     CardTitle, CardFooter , CardDeck } from 'reactstrap';
+import React, { Component } from 'react';
+import { Row , Col } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, CardDeck } from 'reactstrap';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { baseUrl } from '../shared/baseUrl';

@@ -9,23 +9,23 @@ import {
 
 const items = [
   {
-    src: require('../assets/Images/architecture-beautiful-exterior-family-house.jpg'),
+    src: require('../assets/Images2/wallpaperflare.com_wallpaper(2).jpg'),
     altText: "Slide 1",
-    caption: "Functionality & Simplicity",
-    text: "Archeticture That Reflects Practical Style Of Life",
+    caption: "Beauty And Peace",
+    text: "Autumn Looks That Takes Your Troubles Away",
     header: "Slide 1 Header",
     key: "1"
   },
   {
-    src: require('../assets/Images/house_autumn_river_127447_1366x768.jpg'),
+    src: require('../assets/Images2/wallpaperflare.com_wallpaper(4).jpg'),
     altText: "Slide 2",
-    caption: "Beauty And Peace",
-    text: "Autumn Looks That Takes Your Troubles Away",
+    caption: "Functionality & Simplicity",
+    text: "Archeticture That Reflects Practical Style Of Life",
     header: "Slide 2 Header",
     key: "2"
   },
   {
-    src: require('../assets/Images/photo-1576941089067-2de3c901e126.jpg'),
+    src: require('../assets/Images2/wallpaperflare.com_wallpaper.jpg'),
     altText: "Slide 3",
     caption: "Suburban Compatibility",
     text: "Peaceful Life Of Just Being Down To Earth And Comfortable",
@@ -88,8 +88,8 @@ class CarouselComp extends Component {
     });
 
     return (
-      <div className="container col-12">
-      <div className="row-content">
+      <div className="container col-12 col-lg-12 col-xl-9">
+      <div className="row-content" style={{ color: "#000" }}>
       <Carousel
         activeIndex={activeIndex}
         next={this.next}

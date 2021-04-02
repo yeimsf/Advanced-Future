@@ -4,8 +4,9 @@ import { baseUrl } from '../shared/baseUrl';
 
 export const fetchAppartments = () => (dispatch) => {
   dispatch(appartmentsLoading(true));
-
-  return fetch(baseUrl + 'appartments')
+  return fetch(baseUrl + 'appartments', {
+	  
+  })
       .then(response => {
           if (response.ok) {
               return response;
@@ -24,59 +25,8 @@ export const fetchAppartments = () => (dispatch) => {
       .then(appartments => dispatch(addAppartments(appartments)))
       .catch(error => dispatch(appartmentsFailed(error.message)));
 }
-// export const fetchAppartimages = () => (dispatch) => {
-//   dispatch(appartmentsLoading(true));
-//   return fetch(baseUrl + 'appartments/sendfiles')
-//       .then(response => {
-//           if (response.ok) {
-//               return response;
-//           }
-//           else {
-//               var error = new Error('Error ' + response.status + ': ' + response.statusText);
-//               error.response = response;
-//               throw error;
-//           }
-//       },
-//       error => {
-//           var errmess = new Error(error.message);
-//           throw errmess;
-//       })
-//       .then(response => response.json())
-//       .then(appartments => dispatch(addAppartments(appartments)))
-//       .catch(error => dispatch(appartmentsFailed(error.message)));
-// }
-// export const postAppartment = (areaName,description,shortDescription,price,imageFile) => {
 
-//     const formData = new FormData();
-//     formData.append('areaName' , areaName);
-//     formData.append('description' , description);
-//     formData.append('shortDescription' , shortDescription);
-//     formData.append('price' , price);
-//     formData.append('imageFile' , imageFile);
 
-//     const bearer = 'Bearer ' + localStorage.getItem('token');
-//     const requestOptions = {
-//           method: 'POST',
-//           body: JSON.stringify(formData),
-//           headers: {
-//             'Authorization': bearer
-//           },
-//           credentials: "same-origin"
-//     }
-//       return fetch(baseUrl + 'appartments', requestOptions)
-//       .then(response => {
-//           if (response.ok) {
-//             return response;
-//           } else {
-//             var error = new Error('Error ' + response.status + ': ' + response.statusText);
-//             error.response = response;
-//             throw error;
-//           }
-//         },
-//         error => {
-//               throw error;
-//       })
-// }
 export const postAppartment = (newAppartment) => (dispatch) => {
   
   
@@ -96,26 +46,8 @@ export const postAppartment = (newAppartment) => (dispatch) => {
   .catch(error => { console.log('Post appartments ', error.message);
       alert('Your appartment could not be posted\nError: '+ error.message); })
 }
-// export async function postAppartment(areaName,description,shortDescription,price,imageFile) {
-  
-//     const formData = new FormData();
-//     formData.set('areaName' , areaName);
-//     formData.set('description' , description);
-//     formData.set('shortDescription' , shortDescription);
-//     formData.set('price' , price);
-//     formData.append('imageFile' , imageFile[0]);
-//     const response = await fetch("https://localhost:3886/appartments", {
-//       method: 'POST',
-//       cache: 'no-cache',
-//       credentials: 'same-origin',
-//       headers: {
-//         'Content-Type': 'multipart/json',
-//       },
-//       redirect: 'follow',
-//       body: JSON.stringify(formData)
-//     });
-//     return response.json();
-// };
+
+
 export const putAppartment = (appartmentId, appartment) => (dispatch) => {
   const bearer = 'Bearer ' + localStorage.getItem('token');
   return fetch(baseUrl + 'appartments/' + appartmentId ,{
@@ -138,15 +70,18 @@ export const putAppartment = (appartmentId, appartment) => (dispatch) => {
     throw error;
   })
 }
+
+
 export const delAppartment = (appartmentId) => (dispatch) => {
   const bearer = 'Bearer' + localStorage.getItem('token');
   return fetch(baseUrl + 'appartments/' + appartmentId ,{
-    method: "DELETE",
+    method: 'DELETE',
     body: JSON.stringify({ "_id": appartmentId }),
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
+      'Authorization': bearer
     },
-    credentials: "same-origin"
+    credentials: 'same-origin'
   })
   .then(response => {
     if(response.ok){
@@ -160,6 +95,10 @@ export const delAppartment = (appartmentId) => (dispatch) => {
     throw error;
   })
 }
+
+
+
+
 export const appartmentsLoading = () => ({
   type: ActionTypes.APPARTMENTS_LOADING
 });
@@ -198,6 +137,12 @@ export const loginError = (message) => {
         type: ActionTypes.LOGIN_FAILURE,
         message
     }
+}
+export const logoutError = (message) => {
+	return {
+		type: ActionTypes.LOGOUT_FAILURE,
+		message
+	}
 }
 
 export const loginUser = (creds) => (dispatch) => {
@@ -256,7 +201,37 @@ export const receiveLogout = () => {
 // Logs the user out
 export const logoutUser = () => (dispatch) => {
     dispatch(requestLogout())
-    localStorage.removeItem('token');
-    localStorage.removeItem('creds');
-    dispatch(receiveLogout())
-}
+    //localStorage.removeItem('token');
+    //localStorage.removeItem('creds');
+    //dispatch(receiveLogout())
+    return fetch(baseUrl + 'users/logout', {
+    	method: 'GET',
+	headers: {
+		'Content-Type': 'application/json'
+	}
+    }).then(response => {
+	    if(response.ok){
+	    	return response;
+	    }
+	    else {
+	    	var error = new Error('Error '+ response.status + ':' + response.statusText);
+		error.response = response;
+		throw error;
+	    }
+	}, error => { throw error; })
+	.then(response => response.json())
+	.then(response => {
+		if(response.success){
+			localStorage.removeItem('token');
+    			localStorage.removeItem('creds');
+			dispatch(receiveLogout());
+		}
+		else {
+			var error = new Error('Error ' + response.status);
+	            	error.response = response;
+			throw error;
+		}
+	})
+	.catch(error => dispatch(logoutError(error.message)))
+
+    };

@@ -9,7 +9,7 @@ import {
 
 const items = [
   {
-    src: require('../assets/Images/architecture-beautiful-exterior-family-house.jpg'),
+    src: require('../assets/Images2/wallpaperflare.com_wallpaper(2).jpg'),
     altText: "Slide 1",
     caption: "العملية والبساطة",
     text: "فن العمارة الذي يعكس أسلوب الحياة العملي",
@@ -17,7 +17,7 @@ const items = [
     key: "1"
   },
   {
-    src: require('../assets/Images/house_autumn_river_127447_1366x768.jpg'),
+    src: require('../assets/Images2/wallpaperflare.com_wallpaper.jpg'),
     altText: "Slide 2",
     caption: "الجمال والسلام",
     text: "منظر الخريف الذي يريح الأنظار",
@@ -25,7 +25,7 @@ const items = [
     key: "2"
   },
   {
-    src: require('../assets/Images/photo-1576941089067-2de3c901e126.jpg'),
+    src: require('../assets/Images2/wallpaperflare.com_wallpaper(4).jpg'),
     altText: "Slide 3",
     caption: "معنى التوافق",
     text: "حياة سالمة و مريحة لأقصى درجة",
@@ -89,7 +89,7 @@ class ArabicCarouselComp extends Component {
     });
 
     return (
-      <div className="container col-12">
+      <div className="container col-12 col-lg-12 col-xl-9">
       <div className="row-content">
       <Carousel
         activeIndex={activeIndex}

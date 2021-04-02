@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
-    CardTitle, Breadcrumb, BreadcrumbItem, Label,
-    Modal, ModalHeader, ModalBody, Button, Row, Col } from 'reactstrap';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
+import { Card, CardImg, CardImgOverlay,
+    CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Loading from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { FadeTransform } from 'react-animation-components';
 
 function RenderAppartments({appartment}) {
             return(
@@ -62,9 +61,9 @@ const Menu = (props) => {
           logoutUser={props.logoutUser}/>
       <div className="container">
         <div className="row">
-          <Breadcrumb>
+          <Breadcrumb style={{ background: "transparent" }}>
             <BreadcrumbItem><Link to='/home'>Home</Link></BreadcrumbItem>
-            <BreadcrumbItem active>Menu</BreadcrumbItem>
+            <BreadcrumbItem active style={{ color: "#FFF" }}>Menu</BreadcrumbItem>
           </Breadcrumb>
           <div className="col-12">
             <h3>Menu</h3>

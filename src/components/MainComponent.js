@@ -16,7 +16,6 @@ import { connect } from 'react-redux';
 import { loginUser, logoutUser, fetchAppartments, postAppartment, delAppartment, putAppartment } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import DelAppart from './AdminDelAppart';
-import AdminCardEditComp from './AdminCardEdit';
 
 const mapStateToProps = state => {
   return {
@@ -64,16 +63,6 @@ class Main extends Component {
           />
       );
     }
-    const AdminAppartWithId = ({match}) => {
-      return(
-        <CardComp appartment={this.props.appartments.appartments.filter((appartment) => appartment._id === match.params.appartmentId)[0]}
-          isLoading={this.props.appartments.isLoading}
-          errMess={this.props.appartments.errMess}
-          appartments={this.props.appartments}
-          match = {match}
-          /> 
-      );
-    }
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
         this.props.auth.isAuthenticated
@@ -88,22 +77,6 @@ class Main extends Component {
           )
       )} />
     );
-    // const PrivateRoute = ({component: Component, ...rest}) => (
-    //   <Route {...rest} render={(props) => (
-    //     if(this.props.auth.isAuthenticated) 
-    //     {
-    //       alert("Authorization Complete");
-    //       <Component {...props} />
-    //     }
-    //     else
-    //     {
-    //       alert("You Are Not Authorized");
-    //       <Redirect to={{
-    //         pathname: '/home',
-    //         state: { from: props.location }
-    //       }} />
-    //     }
-    //   )} /> );
     return (
       <>
       <TransitionGroup>

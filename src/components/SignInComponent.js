@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import Header from './HeaderComponent';
 import Footer  from './FooterComponent';
-import AdminMain from './AdminMain';
-import Dashboard from './AdminDashboard';
-import Main from './MainComponent';
-import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {  Card, CardImg, Button, Form, Input } from 'reactstrap';
-import { Link , Redirect , useHistory , withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import logo from '../assets/Images/LOGO.jpeg';
 import '../App.css';
 
@@ -53,22 +49,26 @@ class SignIn extends Component {
           loginUser={this.props.loginUser}
           logoutUser={this.props.logoutUser}
           />
-      <div className="container col-12">
-        <Card className="container signin cardborder">
-          <div className="row">
-            <CardImg className="appMargins" src={logo} alt="Advanced Future"/>
+      <div className="container col-12 signinCont">
+        <Card className="container signin cardborder" style={{ width: "35%"  }}>
+	  <div className="row">
+	  <div className="col-6">
+            <CardImg className="appMargins" left src={logo} width="100%" alt="Advanced Future"/>
           </div>
-          <Form onSubmit={this.handleLogin}>
-              <div className="row">    
+	    <div className="col-6">
+            <Form className="signinForm" onSubmit={this.handleLogin}>
+              <div className="">    
                 <Input className="formBack" type="text" id="username" name="username" placeholder="Username" innerRef={(input) => this.username = input} />
               </div>
-              <div className="row">
+              <div className="">
                 <Input className="formBack" type="password" id="password" name="password" placeholder="Password" innerRef={(input) => this.password = input}  />
               </div>
-              <div className="row">
+              <div className="">
                 <Button className="offset-sm-4 col-sm-4 buttonmr formBackButton" type="submit" value="submit">Login</Button>
               </div>
-          </Form>
+            </Form>
+	    </div>
+	  </div>  
         </Card>
       </div>
       <Footer />

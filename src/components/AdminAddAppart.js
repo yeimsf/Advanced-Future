@@ -2,7 +2,6 @@
 import AdminHeader from './AdminHeader';
 import AdminFooter from './AdminFooter';
 import { Label, Button, Row, Col, Form } from 'reactstrap';
-import { baseUrl } from '../shared/baseUrl';
 import axios from 'axios';
 
 class AddAppart extends Component {
@@ -107,7 +106,7 @@ class AddAppart extends Component {
     formData.set("bathrooms",this.state.bathrooms);
     formData.set("balconys",this.state.balconys);
     formData.set("kitchens",this.state.kitchens);
-    axios.post("https://localhost:3886/appartments", formData, {
+    axios.post("http://172.105.245.241:3443/appartments", formData, {
     }).then(res => {
         console.log(res.data)
     })
@@ -119,56 +118,56 @@ class AddAppart extends Component {
           loginUser={this.props.loginUser}
           logoutUser={this.props.logoutUser}
           />
-        <div className="container">
+        <div className="container" style={{ color: "#EEE" }}>
           <h3>Enter Appartment Information</h3>
           <hr />
           <Form onSubmit={this.handleSubmitFinalIsa} id="MyForm">
             <Row className="form-group">
               <Col>
                 <Label htmlFor="areaName">Area Name</Label>
-                <input model=".areaName" type="text" onChange={this.onChange} id="areaName" className="form-control" innerRef={(input) => this.areaName = input}></input>  
+                <input style={{ backgroundColor: "#CCC" }} model=".areaName" type="text" onChange={this.onChange} id="areaName" className="form-control" innerRef={(input) => this.areaName = input}></input>  
               </Col>
             </Row>
             <Row className="form-group">
               <Col>
                 <Label htmlFor="description">Description</Label>
-                <input model=".description" type="text" onChange={this.onChange} id="description" className="form-control" innerRef={(input) => this.description = input}></input>  
+                <input style={{ backgroundColor: "#CCC" }} style={{ backgroundColor: "#CCC" }} model=".description" type="text" onChange={this.onChange} id="description" className="form-control" innerRef={(input) => this.description = input}></input>  
               </Col>
             </Row>
             <Row className="form-group">
               <Col>
                 <Label htmlFor="bedrooms">Bedrooms</Label>
-                <input model=".bedrooms" type="text" onChange={this.onChange} id="bedrooms" className="form-control" innerRef={(input) => this.bedrooms = input}></input>  
+                <input style={{ backgroundColor: "#CCC" }} model=".bedrooms" type="text" onChange={this.onChange} id="bedrooms" className="form-control" innerRef={(input) => this.bedrooms = input}></input>  
               </Col>
             </Row>
             <Row className="form-group">
               <Col>
                 <Label htmlFor="bathrooms">Bathrooms</Label>
-                <input model=".bathrooms" type="text" onChange={this.onChange} id="bathrooms" className="form-control" innerRef={(input) => this.bathrooms = input}></input>  
+                <input style={{ backgroundColor: "#CCC" }} model=".bathrooms" type="text" onChange={this.onChange} id="bathrooms" className="form-control" innerRef={(input) => this.bathrooms = input}></input>  
               </Col>
             </Row>
             <Row className="form-group">
               <Col>
                 <Label htmlFor="balconys">Balconys</Label>
-                <input model=".balconys" type="text" onChange={this.onChange} id="balconys" className="form-control" innerRef={(input) => this.balconys = input}></input>  
+                <input style={{ backgroundColor: "#CCC" }} model=".balconys" type="text" onChange={this.onChange} id="balconys" className="form-control" innerRef={(input) => this.balconys = input}></input>  
               </Col>
             </Row>
             <Row className="form-group">
               <Col>
                 <Label htmlFor="kitchens">Kitchens</Label>
-                <input model=".kitchens" type="text" onChange={this.onChange} id="kitchens" className="form-control" innerRef={(input) => this.kitchens = input}></input>  
+                <input style={{ backgroundColor: "#CCC" }} model=".kitchens" type="text" onChange={this.onChange} id="kitchens" className="form-control" innerRef={(input) => this.kitchens = input}></input>  
               </Col>
             </Row>
             <Row className="form-group">
               <Col>
                 <Label htmlFor="price">Price</Label>
-                <input model=".price" type="number" id="price" onChange={this.onChange} className="form-control" innerRef={(input) => this.price = input}></input>
+                <input style={{ backgroundColor: "#CCC" }} model=".price" type="number" id="price" onChange={this.onChange} className="form-control" innerRef={(input) => this.price = input}></input>
               </Col>
             </Row>
             <Row className="form-group">
               <Col>
                 <Label htmlFor="image">Images Upload</Label>
-                <input model=".image" type="file" multiple id="image" onChange={this.onChange} className="form-control" innerRef={(input) => this.image = input}></input>
+                <input style={{ backgroundColor: "#CCC" }} model=".image" type="file" multiple id="image" onChange={this.onChange} className="form-control" innerRef={(input) => this.image = input}></input>
               </Col>
             </Row>
             <Button type="submit" className="bg-primary">Submit</Button>

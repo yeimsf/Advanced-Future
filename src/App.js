@@ -4,7 +4,6 @@ import './App.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ConfigureMarket } from './redux/configureMarket';
-
 const store = ConfigureMarket();
 
 class App extends Component {

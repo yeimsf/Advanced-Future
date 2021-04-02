@@ -1,32 +1,36 @@
-import React, { useState, Component } from 'react';
-import { CardGroup , Card, CardImg, CardImgOverlay, CardText, CardBody,
-     CardTitle, CardFooter , CardDeck , Button, Form, Input , Row, Col } from 'reactstrap';
-import AdminHeader from './AdminHeader';
+import React, { Component } from 'react';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardFooter, Button, Form, Input , Row, Col } from 'reactstrap';
 import { baseUrl } from '../shared/baseUrl';
+import axios from 'axios';
 import '../App.css';
 
 class AdminCardComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        ID: '' 
+        appartmentId: '' 
       };
     this.onChange = this.onChange.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
   }
   onChange(e) {
-    if (e.target.id === 'ID') {
-      this.setState({ ID: e.target.value });
+    if (e.target.id === 'appartmentId') {
+      this.setState({ appartmentId: e.target.value });
     }
-}
+  }
   handleRemove(){
-    this.props.delAppartment(this.state.ID);
+    this.props.delAppartment(this.state.appartmentId);
+    /*var id = this.state.appartmentId;
+    axios.post("http://172.105.245.241:3443/appartments/"+this.state.appartmentId, { credentials: 'same-origin' }).then(res => {
+        console.log(res)
+    });*/
+//		  .catch(error => { console.log(error) });
   }
   render() {
     const appartmentRender = this.props.appartments.appartments.map((appartment) => {   
         var x = 1;
         return(    
-            <Card>
+            <Card key={appartment._id}>
               <CardImg top src={baseUrl + appartment.image[0].image} alt={appartment.name} />
               <CardBody>
                 <CardTitle>Appartment Number: {x}</CardTitle>
@@ -50,7 +54,7 @@ class AdminCardComp extends Component {
                 <Form onSubmit={this.handleRemove}>
                     <Row>
                         <Col>
-                            <Input className="formBack" onChange={this.onChange} type="text" id="ID" name="ID" placeholder="Enter ID" innerRef={(input) => this.ID = input} />
+                            <Input className="formBack" onChange={this.onChange} type="text" id="appartmentId" name="appartmentId" placeholder="Enter ID" innerRef={(input) => this.appartmentId = input} />
                         </Col>
                     </Row>
                     <Row>

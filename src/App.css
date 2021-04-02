@@ -1,3 +1,10 @@
+.signinCont{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.signinForm{
+  margin-top: 40px;
+}
 .row-header {
   margin: 0px auto;
   padding: 0px 0px; }
@@ -9,16 +16,21 @@
   /* min-height: 400px;  */
 }
 .footer {
-  background-color: #212121;
+  background-color: #494949;
   margin: 0px auto;
-  padding: 20px 0px;
-  color: #AAA;
+  padding: 0px 0px;
+  color: #FFF;
+  background: transparent;
+}
+.footer > p {
+  font-weight: bold;
+  color: white;
 }
 .jumbotron {
   margin: 0px;
   border-radius: 0px;
   padding: 70px 30px;
-  background-color: #494949;
+  background-color: rgba(0,0,0,0.4);
   color: #FFFFFF; }
 .containerCconange{
   margin-left: 10px;
@@ -41,17 +53,17 @@ li{
   list-style: none;
 }
 img {
-  width: 100%;
+  /*width: 100%;*/
 }
 .navbar-dark {
   background-color: #292929; }
 .btn{
-  color: #212529;
+  color: #FFF;
   background-color: transparent;
   border: 1px solid transparent;
 }
 .fon{
-  color: #0f0f0f;
+  color: #CACACA;
 }
 .page-enter {
   opacity: 0.01;
@@ -96,8 +108,9 @@ img {
 .signin{
   width: 35%;
   max-height: 150;
-  margin: auto;
+  /*margin: auto;*/
   margin-top: 20px;
+  background: transparent;
 }
 .buttonmr{
   padding-top: 10px;
@@ -119,11 +132,16 @@ img {
   color: white;
 }
 .formBack{
-  background-color: #F8F8F8;
+  background-color: #999999;
+  background: transparent;
+  border: 1px solid #999;
+  border-color: #999;
+  border-radius: 5px;
+  margin: 10px auto;
   color: black;
 }
 .cardBack{
-  background-color: #494949;
+  background-color: rgba(0,0,0,0.4);
   color: #AAA;
 }
 #footer {
@@ -137,4 +155,47 @@ img {
 }
 .CustomMadeFooter{
   position: fixed;
+}
+a{
+	font-weight: bold;
+}
+a:link
+{
+  text-decoration-line: none;
+  color: #00F;
+  text-decoration: none!important;
+}
+a:visited
+{
+  text-decoration-line: none;
+  color: #00F;
+  text-decoration: none!important;
+}
+a:hover
+{
+  text-decoration-line: none;
+  color: #FFF;
+  text-decoration: underline;
+}
+a:active
+{
+  text-decoration-line: none;
+  color: #FFF;
+  text-decoration: underline;
+}
+.temp
+{
+	width: 65%;
+}
+.ImageBack
+{
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	width: auto;
+}
+
+.BottomOne{
+	position: fixed;
+	bottom: 0;
 }
